@@ -1,22 +1,34 @@
 import Button from "./Button";
 
-export default function Sidebar() {
-  function handleClick() {}
+export default function Sidebar({ setView }) {
+  function handleClick() {
+    setView("AddProject");
+  }
 
   return (
-    <div className="w-1/5 bg-sky-950 text-white p-6">
-      <h2 className="text-2xl font-bold mb-6">YOUR PROJECTS</h2>
+    <aside
+      className="
+        bg-sky-950 text-white
+        w-full md:w-64 md:shrink-0
+        md:h-screen md:sticky md:top-0
+        p-6
+        border-b md:border-b-0 md:border-r border-sky-900
+        flex flex-col gap-4
+      "
+      aria-label="Project sidebar"
+    >
+      <h2 className="text-2xl font-bold">YOUR PROJECTS</h2>
+
       <Button
-        text="Add Task"
-        className="bg-green-500 hover:bg-green-600 text-white"
+        text="+ Add Project"
+        className="w-full bg-green-500 hover:bg-green-600 text-white"
         onClick={handleClick}
       />
-      <ul className="space-y-4">
-        <li className="hover:text-gray-300 cursor-pointer">Project 1</li>
-        <li className="hover:text-gray-300 cursor-pointer">Project 2</li>
-        <li className="hover:text-gray-300 cursor-pointer">Project 3</li>
-        <li className="hover:text-gray-300 cursor-pointer">Project 4</li>
+
+      {/* Projects list */}
+      <ul className="mt-2 space-y-2 overflow-y-auto flex-1 pr-1">
+        {/* <li className="hover:text-gray-300 cursor-pointer">Project 1</li> */}
       </ul>
-    </div>
+    </aside>
   );
 }
