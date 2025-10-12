@@ -1,4 +1,5 @@
 import Button from "./Button";
+import { formatYMDToDMY } from "../utils/date";
 
 export default function Sidebar({
   setView,
@@ -46,7 +47,7 @@ export default function Sidebar({
         className="w-full bg-emerald-500 hover:bg-emerald-600 text-white
                    rounded-xl py-2.5 font-medium shadow-sm
                    focus:outline-none focus:ring-2 focus:ring-offset-2
-                   focus:ring-emerald-500 focus:ring-offset-sky-900"
+                   focus:ring-emerald-500 focus:ring-offset-sky-900 cursor-pointer"
         onClick={handleClick}
       />
 
@@ -89,7 +90,7 @@ export default function Sidebar({
                     {project.title || "Untitled"}
                   </p>
                   <p className="truncate text-xs text-sky-200/70">
-                    {project.date || ""}
+                    {formatYMDToDMY(project.date) || ""}
                   </p>
                 </div>
               </div>

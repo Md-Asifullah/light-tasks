@@ -1,8 +1,27 @@
+import { useState } from "react";
 import Button from "./Button";
+import { formatYMDToDMY } from "../utils/date";
 
-export default function ProjectDetails({ selectedProject }) {
-  function handleDeleteProject() {}
-  function handleAddTask() {}
+export default function ProjectDetails({
+  selectedProject,
+  deleteProject,
+  addTask,
+  deleteTask,
+}) {
+  const [task, setTask] = useState("");
+
+  function handleDeleteProject(projectId) {
+    deleteProject(projectId);
+  }
+  function handleAddTask() {
+    if (!task.trim()) return;
+    addTask(task.trim());
+    setTask("");
+  }
+
+  function handleDeleteTask(index) {
+    deleteTask(index);
+  }
 
   if (!selectedProject) {
     return (
@@ -32,7 +51,7 @@ export default function ProjectDetails({ selectedProject }) {
               <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
                 {selectedProject.date ? (
                   <span className="inline-flex items-center rounded-full bg-white/80 px-3 py-1 ring-1 ring-sky-200 text-sky-800">
-                    {selectedProject.date}
+                    {formatYMDToDMY(selectedProject.date)}
                   </span>
                 ) : null}
               </div>
@@ -42,9 +61,10 @@ export default function ProjectDetails({ selectedProject }) {
               <Button
                 text="Delete"
                 type="button"
-                className="px-5 py-2.5 rounded-xl border border-sky-200 bg-white text-sky-800 hover:bg-white/80 shadow-sm
-                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 focus:ring-offset-sky-50"
-                onClick={handleDeleteProject}
+                className="px-5 py-2.5 rounded-xl border border-sky-200 bg-white text-sky-800 shadow-sm cursor-pointer
+                           hover:bg-red-50 hover:text-red-700 hover:border-red-300
+                           focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-sky-50 transition-colors"
+                onClick={() => handleDeleteProject(selectedProject.id)}
               />
             </div>
           </div>
@@ -76,6 +96,8 @@ export default function ProjectDetails({ selectedProject }) {
             >
               <input
                 type="text"
+                value={task}
+                onChange={(e) => setTask(e.target.value)}
                 name="task"
                 placeholder="Add a task…"
                 className="w-full sm:flex-1 rounded-xl border border-sky-200 bg-white/90
@@ -87,14 +109,47 @@ export default function ProjectDetails({ selectedProject }) {
                 text="+ Add Task"
                 type="submit"
                 className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-medium shadow-sm
-                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 focus:ring-offset-sky-50"
+                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 focus:ring-offset-sky-50 cursor-pointer"
               />
             </form>
 
-            {/* Empty state for tasks (replace with real list when you add tasks) */}
-            <div className="mt-6 rounded-xl border border-dashed border-sky-300/70 bg-white/60 p-4 text-sm text-sky-800/80">
-              This project does not have any tasks yet.
-            </div>
+            {selectedProject.tasks.length === 0 ? (
+              <div className="mt-6 rounded-xl border border-dashed border-sky-300/70 bg-white/60 p-4 text-sm text-sky-800/80">
+                This project does not have any tasks yet.
+              </div>
+            ) : (
+              <ul className="mt-6 overflow-hidden rounded-xl bg-white/80 ring-1 ring-sky-200 shadow-sm divide-y divide-sky-100">
+                {selectedProject.tasks.map((t, index) => (
+                  <li
+                    key={t.id ?? index}
+                    className="flex items-center justify-between gap-4 px-4 py-3 hover:bg-sky-50/70 transition-colors"
+                  >
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sky-900 truncate">
+                        {typeof t === "string"
+                          ? t
+                          : (t?.title ?? JSON.stringify(t))}
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteTask(t.id)}
+                      className="inline-flex items-center gap-2 rounded-lg border border-sky-200 bg-white px-3 py-1.5 text-sm text-sky-700 shadow-sm cursor-pointer
+                                 hover:bg-red-50 hover:text-red-700 hover:border-red-300
+                                 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-sky-50 transition-colors"
+                      aria-label="Delete task"
+                      title="Delete task"
+                    >
+                      <span className="block leading-none" aria-hidden>
+                        ✕
+                      </span>
+                      <span className="hidden sm:inline">Delete</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </section>
       </div>

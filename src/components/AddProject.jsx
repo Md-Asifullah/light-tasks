@@ -95,14 +95,14 @@ export default function AddProject({ addProject }) {
                 text="Cancel"
                 type="button"
                 className="px-5 py-2.5 rounded-xl border border-sky-200 bg-white text-sky-800 hover:bg-white/80 shadow-sm
-               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 focus:ring-offset-sky-50"
+               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-300 focus:ring-offset-sky-50 cursor-pointer"
                 onClick={handleCancel}
               />
               <Button
                 text="Save"
                 type="submit"
                 className="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-medium shadow-sm
-               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 focus:ring-offset-sky-50"
+               focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 focus:ring-offset-sky-50 cursor-pointer"
               />
             </div>
           </form>

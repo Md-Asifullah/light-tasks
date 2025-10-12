@@ -32,7 +32,7 @@ export default function Home({ setView }) {
               <Button
                 text="Create a new project"
                 className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl px-5 py-2.5 font-medium shadow-sm
-                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 focus:ring-offset-sky-100"
+                           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 focus:ring-offset-sky-100 cursor-pointer"
                 onClick={handleClick}
               />
             </div>
