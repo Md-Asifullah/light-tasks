@@ -2,7 +2,7 @@
 
 A lightweight, **mini project manager** built with **React** and **Tailwind CSS**. Add projects, jot down tasks, and keep track of what matters—fast.
 
-**Live demo:** 👉 **[Add your Netlify URL here](https://your-netlify-site.netlify.app/)**
+**Live demo:** 👉 **[https://lite-tasks.netlify.app](https://lite-tasks.netlify.app)**
 
 ---
 
@@ -37,7 +37,7 @@ Sometimes you just want a **tiny workspace**: a place to capture a project and s
 - **Home** — Intro / call‑to‑action to start a project
 - **Add Project** — Form with _Title, Description, Date_ (validated in UI)
 - **Sidebar** — Shows **total projects** and a **clickable list**
-- **Project Details** — View project info and **add/delete tasks**
+- **Project Details** — View project info, delete project and **add/delete tasks**
 
 ---
 
