@@ -104,6 +104,25 @@ export default function Sidebar({
         Tip: Click “+ Add Project” to add a new one. Projects show here
         instantly.
       </p>
+
+      {/* Polished credit line */}
+      <p
+        className="text-[11px] leading-relaxed text-sky-50/95
+                   bg-sky-800/40 border border-sky-700/50
+                   rounded-lg px-3 py-2 shadow-inner"
+      >
+        Lite Tasks — a mini project management application built using React by{" "}
+        <a
+          href="https://artisanasif.com/"
+          target="_blank"
+          rel="noreferrer"
+          className="font-semibold underline underline-offset-2 decoration-emerald-400/60
+                     text-emerald-300 hover:text-emerald-200 hover:decoration-emerald-300
+                     focus:outline-none focus:ring-2 focus:ring-emerald-400/40 rounded-[3px]"
+        >
+          Asif
+        </a>
+      </p>
     </aside>
   );
 }
